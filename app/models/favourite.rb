@@ -1,4 +1,4 @@
 class Favourite < ApplicationRecord
-    belongs_to :user
-    belongs_to :motocycle
+  belongs_to :user
+  belongs_to :motocycle
 end

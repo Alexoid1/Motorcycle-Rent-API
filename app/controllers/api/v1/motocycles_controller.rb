@@ -1,13 +1,13 @@
 class Api::V1::MotocyclesController < ApplicationController
     def index
-      @Motocycles = Motocycle.all
-      render json: @Motocycles
+      motocycles = Motocycle.all
+      render json: motocycles
     end
   
     def show
-      @Motocycle = Motocycle.find(params[:id])
-      if @Motocycle
-        render json: @Motocycle
+      motocycle = Motocycle.find(params[:id])
+      if motocycle
+        render json: motocycle
       else
         render json: { status: 'error', message: "can't find a bicycle with the id #{params[:id]}" }
       end
@@ -18,26 +18,26 @@ class Api::V1::MotocyclesController < ApplicationController
       if motocycle.save
         render json: motocycle
       else
-        render json: { status: 'error', message: @Motocycle.errors.full_messages }
+        render json: { status: 'error', message: motocycle.errors.full_messages }
       end
     end
   
     def update
-      @Motocycle = Motocycle.find(params[:id])
+      motocycle = Motocycle.find(params[:id])
       
-      if @Motocycle.update_attributes(motocycle_params)
-        render json: @Motocycle
+      if motocycle.update_attributes(motocycle_params)
+        render json: motocycle
       else
-        render json: { status: 'error', message: @Motocycle.errors.full_messages }
+        render json: { status: 'error', message: motocycle.errors.full_messages }
       end
     end
   
     def destroy
-      @Motocycles = Motocycle.all
-      @Motocycle = Motocycle.find(params[:id])
-      if @Motocycle
-        @Motocycle.destroy
-        render json: @Motocycles
+      motocycles = Motocycle.all
+      motocycle = Motocycle.find(params[:id])
+      if motocycle
+        motocycle.destroy
+        render json: motocycles
       else
         render json: { status: 'error', message: "can't find a user with the id #{params[:id]}" }
       end

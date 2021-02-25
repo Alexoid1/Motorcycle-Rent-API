@@ -3,7 +3,7 @@ class CreateMotocycles < ActiveRecord::Migration[6.0]
     create_table :motocycles do |t|
       t.string :name
       t.string :model
-      t.string :image, array: true, default: []
+      t.string :images
       t.integer :price
       t.string :description
       t.integer :speed

@@ -76,7 +76,7 @@ Motocycle.create([
 	price: 11000000,
 	description: "Having produced only 45 copies of this motorcycle, this is one of the few exclusive masterpieces in Motorcycle history. This extremely rare gem started off at a bidding of $110,000 but eventually ended up being purchased at $11 Million, 100 times that amount. The spectacular design resembles a clockwork mechanism and so is called “The Evolution of Machine”. Rightfully the costliest motorcycle in the world.",
 	speed: 305,
-	engine: "120ci 45-degree air-cooled V Twin engine"
+	engine: "120ci 45-degree air-cooled V Twin engine",
 	maxpower: "210 HP"
   },
   {
@@ -160,7 +160,7 @@ Motocycle.create([
 	],
 	price: 130000,
 	description: "NCR and Mike Hailwood have written one of the most exciting pages of motorcycling history. In 1974, Mike Hailwood had a terrible and almost career ending accident in Germany. At Silverstone in 1977, Mike Hailwood met Steve Wynne from Sport Motor Cycles Ltd who let him try a new Ducati. The race went down in the history books right from the start as Mike Hailwood set a blistering pace surpassing the favored Phil Read on his factory Honda. Mike Hailwood won the race and won the hearts of racing fans all over the world. One week later, Mike Hailwood won the race at Mallory Park.",
-	speed: 290
+	speed: 290,
 	engine: "Ducati NCR 1120. Titanium connecting rods carved out of billet, high compression forged pistons with single piston ring, custom F1 type crankshaft from billet with longer stroke, NCR CORSE cams, titanium valves, ported heads.",
 	maxpower: "130 HP"
 

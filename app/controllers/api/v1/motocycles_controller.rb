@@ -44,6 +44,6 @@ class Api::V1::MotocyclesController < ApplicationController
   end
 
   def motocycle_params
-    params.permit(:name, :model, :image, :price)
+    params.permit(:name, :model, :image, :price, :description, :speed, :maxpower, :engine)
   end
 end

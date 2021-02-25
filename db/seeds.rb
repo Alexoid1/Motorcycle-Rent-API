@@ -196,14 +196,33 @@ Motocycle.create([
   },
   {
     name: "Ecosse Titanium Series FE TI XX",
-	  model: "Series FE TI XX",
-	  image: "https://estilosdevida.bolsamania.com/wp-content/uploads/2015/12/ecosse-serie.jpg",
-	  price: 300000  
+	model: "Series FE TI XX",
+	image: [
+		"https://cdn.jsdelivr.net/gh/Alexoid1/Motorcycle-Store-API@latest/api-images/Ecosse-Titanium%20Series-FE-TI-XX.png",
+		"https://cdn.jsdelivr.net/gh/Alexoid1/Motorcycle-Store-API@latest/api-images/Ecosse-Titanium%20Series-FE-TI-XX-front.png",
+		"https://cdn.jsdelivr.net/gh/Alexoid1/Motorcycle-Store-API@latest/api-images/Ecosse-Titanium-Series-FE-Ti-XX-left.png"
+	],
+	price: 300000,
+	description: "The titanium chassis of the Founder's Edition Titanium model takes a team of specialized machinists over 1,280 hours to create. Then it's brushed by hand to a stunning, subtle sheen. This fully customized model takes upwards of 3000 hours of expert workmanship. This insanely powerful machine boasts a supercharged intercooled engine, remarkable 225 horsepower and 210 foot pounds of torque and Öhlins MotoGP-grade TTX fluted gas forks with a titanium front axle and carbon ceramic brakes for race-level performance.",
+	engine: "American V-twin, supercharged and intercooled",
+	speed: 289,
+	maxpower: "225 HP",
+
+
   },
   {
     name: "Yamaha Crux",
-	  model: "RX-100",
-	  image: "https://3.bp.blogspot.com/-kuAceg0pyDU/UsDwoYZ3n8I/AAAAAAAAALM/U4TMUaaSxKQ/s1600/Top+5+Cheapest+Motorcycles+in+The+World.jpg",
-	  price: 2990 
+	model: "Crux",
+	image: [
+		"https://cdn.jsdelivr.net/gh/Alexoid1/Motorcycle-Store-API@latest/api-images/yamaha-crux-right.png",
+		"https://cdn.jsdelivr.net/gh/Alexoid1/Motorcycle-Store-API@latest/api-images/Yamaha-Crux.png",
+		"https://cdn.jsdelivr.net/gh/Alexoid1/Motorcycle-Store-API@latest/api-images/Yamaha-CRUX-left.png"
+	],
+	price: 2990,
+	description: "Yamaha Crux bike gives a mileage of 65kmpl in cities and up to 75 – 80 kmpl in highway riding conditions. The maximum safe speed that one can normally achieve is 90 kmph. Even though it can be forced to higher numbers, I wouldn't recommend it. The looks are not head turning but it is not bad either.",
+	engine: "4 Stroke, Air-Cooled Single Cylinder SOHC",
+	maxpower: "8 HP",
+	speed: 94,
+
   }
 ])

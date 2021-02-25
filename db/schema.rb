@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 2021_02_18_072114) do
   create_table "motocycles", force: :cascade do |t|
     t.string "name"
     t.string "model"
-    t.string "images"
+    t.string "image"
+    t.string "image2"
+    t.string "image3"
     t.integer "price"
     t.string "description"
     t.integer "speed"

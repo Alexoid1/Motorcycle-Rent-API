@@ -1,11 +1,11 @@
 class Api::V1::FavouritesController < ApplicationController
   def index
-    @user_favourites = User.find(params[:user_id]).favourites
+    @user_favourites = User.find(params[:user_id]).motocycles
     render json: @user_favourites
   end
 
   def create
-    motocycle = Motocycle.find_by name: params[:name], model: params[:model], image_url: params[:image_url]
+    motocycle = Motocycle.find_by id:params[:motocycle_id]
 
     if motocycle
       user_favourites = User.find(params[:user_id]).motocycles
@@ -17,11 +17,11 @@ class Api::V1::FavouritesController < ApplicationController
   end
 
   def destroy
-    motocycle = @user_favourites.find_by bicycle_id: params[:id]
+    motocycle = User.find(params[:user_id]).favourites.find(params[:id])
     if motocycle
-      @user_favourites = User.find(params[:user_id]).favourites
-      @user_favourites.delete(motocycle)
-      render json: @user_favourites
+      motocycle.destroy
+     
+      render json:  User.find(params[:user_id]).motocycles
     else
       render json: { status: 'error', message: "can't find a Motocycle with the id #{params[:id]}" }
     end

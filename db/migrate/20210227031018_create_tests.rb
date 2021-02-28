@@ -4,7 +4,7 @@ class CreateTests < ActiveRecord::Migration[6.0]
       t.integer :user_id
       t.integer :motocycle_id
       t.string :testDate
-
+      t.string :city
       t.timestamps
     end
   end

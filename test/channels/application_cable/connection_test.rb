@@ -1,3 +1,4 @@
+# rubocop:disable Style/StringLiterals
 require "test_helper"
 
 class ApplicationCable::ConnectionTest < ActionCable::Connection::TestCase

@@ -7,7 +7,7 @@ class Api::V1::FavouritesController < ApplicationController
   def create
     user_favourite=Favourite.create(favourites_params)
     if user_favourite.save
-      render json: User.find(params[:user_id]).favourites
+      render json: User.find(params[:user_id]).motocycles
     else
       render json: { status: 'error', message: user_favourite.errors.full_messages }
     end
@@ -18,7 +18,7 @@ class Api::V1::FavouritesController < ApplicationController
 
     if user_favourite
       user_favourite.destroy
-      @favourites = Favourite.all
+      @favourites =  User.find(params[:user_id]).motocycles
       render json: @favourites
     else
       render json: { status: 'error', message: "can't find a test with the id #{params[:id]} " }

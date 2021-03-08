@@ -7,9 +7,9 @@ class Api::V1::TestsController < ApplicationController
   def create
     user_test = Test.create(test_params)
     if user_test.save
-      render json: user_test
+      render json: user_test, status: :ok
     else
-      render json: { status: 'error', message: user_test.errors.full_messages }
+      render json: { message: user_test.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -19,9 +19,9 @@ class Api::V1::TestsController < ApplicationController
     if user_test
       user_test.destroy
       @tests = Test.all
-      render json: @tests
+      render json: @tests, status: :ok
     else
-      render json: { status: 'error', message: "can't find a test with the id #{params[:id]} " }
+      render json: { message: "can't find a test with the id #{params[:id]} " }, status: :unprocessable_entity
     end
   end
 

@@ -9,7 +9,7 @@ class Api::V1::FavouritesController < ApplicationController
     if user_favourite.save
       render json: User.find(params[:user_id]).motocycles
     else
-      render json: { status: 'error', message: user_favourite.errors.full_messages }
+      render json: { message: user_favourite.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -21,7 +21,7 @@ class Api::V1::FavouritesController < ApplicationController
       @favourites = User.find(params[:user_id]).motocycles
       render json: @favourites
     else
-      render json: { status: 'error', message: "can't find a test with the id #{params[:id]} " }
+      render json: { message: "can't find a test with the id #{params[:id]} " }, status: :unprocessable_entity
     end
   end
 

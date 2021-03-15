@@ -1,4 +1,5 @@
 class Api::V1::TestsController < ApplicationController
+  before_action :authenticate_request!
   def index
     @user_tests = User.find(params[:user_id]).tests
     render json: @user_tests

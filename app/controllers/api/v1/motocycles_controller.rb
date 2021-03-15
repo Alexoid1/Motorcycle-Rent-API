@@ -1,4 +1,5 @@
 class Api::V1::MotocyclesController < ApplicationController
+  before_action :authenticate_request!
   def index
     motocycles = Motocycle.all
     render json: motocycles

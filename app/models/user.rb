@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_secure_password
+
   has_many :favourites
   has_many :tests
   has_many :motocycles, through: :favourites
@@ -6,4 +8,5 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates_format_of :email,
                       with: /\A\S+@.+\.\S+\z/
+  validates :password, presence: true, length: { minimum: 6 }
 end

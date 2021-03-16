@@ -1,5 +1,4 @@
 class Api::V1::UsersController < ApplicationController
-
   def index
     users = UsersRepresenter.new(User.all).as_json
     render json: users
@@ -9,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.find(params[:id])
 
     if user
-      render json:UserRepresenter.new(user).as_json
+      render json: UserRepresenter.new(user).as_json
     else
       render json: { message: "can't find a user with the id #{params[:id]} " }, status: :unprocessable_entity
     end
@@ -18,7 +17,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.save
-      render json:UserRepresenter.new(@user).as_json, status: :ok
+      render json: UserRepresenter.new(@user).as_json, status: :ok
     else
       render json: { message: @user.errors.full_messages }, status: :unprocessable_entity
     end

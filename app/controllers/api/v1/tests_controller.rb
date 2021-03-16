@@ -14,8 +14,6 @@ class Api::V1::TestsController < ApplicationController
     end
   end
 
-  
-
   def test_params
     params.permit(:motocycle_id, :testDate, :city)
   end

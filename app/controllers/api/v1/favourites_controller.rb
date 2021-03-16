@@ -3,7 +3,7 @@ class Api::V1::FavouritesController < ApplicationController
   def index
     favourites = @current_user.favourites
 
-    render json:favourites, status: :ok
+    render json: favourites, status: :ok
   end
 
   def create
@@ -20,10 +20,11 @@ class Api::V1::FavouritesController < ApplicationController
 
     if user_favourite
       user_favourite.destroy
-      @favourites =  @current_user.motocycles
+      @favourites = @current_user.motocycles
       render json: @favourites
     else
-      render json: { message: "can't find a favorites with the id #{params[:motocycle_id]} " }, status: :unprocessable_entity
+      render json: { message: "can't find a favorites with the id #{params[:motocycle_id]} " },
+             status: :unprocessable_entity
     end
   end
 

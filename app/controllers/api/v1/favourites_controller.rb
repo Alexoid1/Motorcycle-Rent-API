@@ -1,32 +1,33 @@
 class Api::V1::FavouritesController < ApplicationController
   before_action :authenticate_request!
   def index
-    @user_favourites = current_user.motocycles
-    render json: @user_favourites
+    favourites = @current_user.favourites
+
+    render json:favourites, status: :ok
   end
 
   def create
-    user_favourite = Favourite.create(favourites_params)
+    user_favourite = @current_user.favourites.create(favourites_params)
     if user_favourite.save
-      render json: User.find(params[:user_id]).motocycles
+      render json: User.find(@current_user.id).motocycles
     else
       render json: { message: user_favourite.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    user_favourite = Favourite.find_by(motocycle_id: params[:id])
+    user_favourite = @current_user.favourites.find_by(motocycle_id: params[:motocycle_id])
 
     if user_favourite
       user_favourite.destroy
-      @favourites = User.find(params[:user_id]).motocycles
+      @favourites =  @current_user.motocycles
       render json: @favourites
     else
-      render json: { message: "can't find a test with the id #{params[:id]} " }, status: :unprocessable_entity
+      render json: { message: "can't find a favorites with the id #{params[:motocycle_id]} " }, status: :unprocessable_entity
     end
   end
 
   def favourites_params
-    params.permit(:motocycle_id, :user_id)
+    params.permit(:motocycle_id)
   end
 end

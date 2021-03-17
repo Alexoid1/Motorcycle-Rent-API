@@ -1,7 +1,7 @@
 class Api::V1::FavouritesController < ApplicationController
   before_action :authenticate_request!
   def index
-    favourites = @current_user.favourites
+    favourites = @current_user.motocycles
 
     render json: favourites, status: :ok
   end

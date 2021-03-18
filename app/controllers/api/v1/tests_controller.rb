@@ -8,7 +8,7 @@ class Api::V1::TestsController < ApplicationController
   def create
     user_test = @current_user.tests.create(test_params)
     if user_test.save
-      render json: user_test, status: :ok
+      render json: @current_user.tests, status: :ok
     else
       render json: { message: user_test.errors.full_messages }, status: :unprocessable_entity
     end

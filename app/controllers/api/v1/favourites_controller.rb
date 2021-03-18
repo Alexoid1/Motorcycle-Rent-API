@@ -7,11 +7,16 @@ class Api::V1::FavouritesController < ApplicationController
   end
 
   def create
-    user_favourite = @current_user.favourites.create(favourites_params)
-    if user_favourite.save
-      render json: User.find(@current_user.id).motocycles
+    if (!@current_user.favourites.find_by(motocycle_id: params[:motocycle_id]))
+      user_favourite = @current_user.favourites.create(favourites_params)
+      if user_favourite.save
+        render json: User.find(@current_user.id).motocycles
+      else
+        render json: { message: user_favourite.errors.full_messages }, status: :unprocessable_entity
+      end
     else
-      render json: { message: user_favourite.errors.full_messages }, status: :unprocessable_entity
+      render json: { message: "motorcycle already taken" }, status: :unprocessable_entity
+
     end
   end
 

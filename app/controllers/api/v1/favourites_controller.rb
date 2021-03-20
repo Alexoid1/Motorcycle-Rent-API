@@ -1,29 +1,39 @@
 class Api::V1::FavouritesController < ApplicationController
+  before_action :authenticate_request!
   def index
-    @user_favourites = User.find(params[:user_id]).favourites
-    render json: @user_favourites
+    favourites = @current_user.motocycles
+
+    render json: favourites, status: :ok
   end
 
   def create
-    motocycle = Motocycle.find_by name: params[:name], model: params[:model], image_url: params[:image_url]
-
-    if motocycle
-      user_favourites = User.find(params[:user_id]).motocycles
-      user_favourites << motocycle
-      render json: user_favourites
+    if !@current_user.favourites.find_by(motocycle_id: params[:motocycle_id])
+      user_favourite = @current_user.favourites.create(favourites_params)
+      if user_favourite.save
+        render json: User.find(@current_user.id).motocycles
+      else
+        render json: { message: user_favourite.errors.full_messages }, status: :unprocessable_entity
+      end
     else
-      render json: { status: 'error', message: "can't find a Motocycle with these props" }
+      render json: { message: 'motorcycle already taken' }, status: :unprocessable_entity
+
     end
   end
 
   def destroy
-    motocycle = @user_favourites.find_by bicycle_id: params[:id]
-    if motocycle
-      @user_favourites = User.find(params[:user_id]).favourites
-      @user_favourites.delete(motocycle)
-      render json: @user_favourites
+    user_favourite = @current_user.favourites.find_by(motocycle_id: params[:motocycle_id])
+
+    if user_favourite
+      user_favourite.destroy
+      @favourites = @current_user.motocycles
+      render json: @favourites
     else
-      render json: { status: 'error', message: "can't find a Motocycle with the id #{params[:id]}" }
+      render json: { message: "can't find a favorites with the id #{params[:motocycle_id]} " },
+             status: :unprocessable_entity
     end
+  end
+
+  def favourites_params
+    params.permit(:motocycle_id)
   end
 end

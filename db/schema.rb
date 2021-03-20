@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_072114) do
+ActiveRecord::Schema.define(version: 2021_03_14_231150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 2021_02_18_072114) do
   create_table "motocycles", force: :cascade do |t|
     t.string "name"
     t.string "model"
-    t.string "image", default: [], array: true
+    t.string "image"
+    t.string "image2"
+    t.string "image3"
     t.integer "price"
     t.string "description"
     t.integer "speed"
@@ -35,11 +37,22 @@ ActiveRecord::Schema.define(version: 2021_02_18_072114) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tests", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "motocycle_id"
+    t.string "testDate"
+    t.string "city"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "motorcycles", default: [], array: true
+    t.string "password_digest"
   end
 
 end

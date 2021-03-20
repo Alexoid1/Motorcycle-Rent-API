@@ -9,16 +9,16 @@ class Api::V1::MotocyclesController < ApplicationController
     if motocycle
       render json: motocycle
     else
-      render json: { status: 'error', message: "can't find a bicycle with the id #{params[:id]}" }
+      render json: { message: "can't find a bicycle with the id #{params[:id]}" }, status: :unprocessable_entity
     end
   end
 
   def create
     motocycle = Motocycle.new(motocycle_params)
     if motocycle.save
-      render json: motocycle
+      render json: motocycle, status: :ok
     else
-      render json: { status: 'error', message: motocycle.errors.full_messages }
+      render json: { message: motocycle.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -26,9 +26,9 @@ class Api::V1::MotocyclesController < ApplicationController
     motocycle = Motocycle.find(params[:id])
 
     if motocycle.update_attributes(motocycle_params)
-      render json: motocycle
+      render json: motocycle, status: :ok
     else
-      render json: { status: 'error', message: motocycle.errors.full_messages }
+      render json: { message: motocycle.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -37,13 +37,13 @@ class Api::V1::MotocyclesController < ApplicationController
     motocycle = Motocycle.find(params[:id])
     if motocycle
       motocycle.destroy
-      render json: motocycles
+      render json: motocycles, status: :ok
     else
-      render json: { status: 'error', message: "can't find a user with the id #{params[:id]}" }
+      render json: { message: "can't find a user with the id #{params[:id]}" }, status: :unprocessable_entity
     end
   end
 
   def motocycle_params
-    params.permit(:name, :model, :image, :price, :description, :speed, :maxpower, :engine)
+    params.permit(:name, :model, :image, :image2, :image3, :price, :description, :speed, :maxpower, :engine)
   end
 end
